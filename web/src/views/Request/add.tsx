@@ -33,7 +33,7 @@ export const AddRequest: React.FC = () => {
     if (user) {
       try {
         const ref = firestore().collection('requests');
-        const doc = await ref.add({ ...data, user: user.uid });
+        const doc = await ref.add({ ...data, user: user.uid, userData });
         history.push('/request/' + doc.id);
       } catch (e) {
         alert('something went wrong');

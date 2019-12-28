@@ -18,7 +18,7 @@ export const Register: React.FC = () => {
       fname: '',
       lname: '',
       email: '',
-      skill: [],
+      skill: '',
     },
     onSubmit: data => register(data),
   });
@@ -68,6 +68,13 @@ export const Register: React.FC = () => {
         onChange={form.handleChange}
         value={form.values.email}
         error={form.errors && form.errors.email}
+      />{' '}
+      <FormInput
+        name="skill"
+        label="ความสามารถที่มี"
+        onChange={form.handleChange}
+        value={form.values.skill}
+        error={form.errors && form.errors.skill}
       />{' '}
       <br />
       <Button onClick={() => form.submitForm()}>สมัคร</Button>

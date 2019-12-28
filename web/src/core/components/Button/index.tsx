@@ -6,7 +6,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <button onClick={onClick} className={className || `p-2 bg-red-200`}>
+    <button onClick={onClick} className={`p-2 bg-red-200 ` + className}>
       {children}
     </button>
   );
