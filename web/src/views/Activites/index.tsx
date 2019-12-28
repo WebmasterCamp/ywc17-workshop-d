@@ -40,7 +40,7 @@ export const Activites: React.FC = () => {
 
   return (
     <div className="Form">
-      <h1 className="text-lg">Request ของฉัน</h1>
+      <h1 className="text-lg">Offer ของ Request ฉัน</h1>
       <div className="p-2">
         {offers.map(offer => {
           return (
@@ -56,8 +56,7 @@ export const Activites: React.FC = () => {
           );
         })}
       </div>
-      <h1 className="text-lg">Offer ของ Request ฉัน</h1>
-
+      <h1 className="text-lg">Request ของฉัน</h1>
       <div className="p-2">
         {requests.map(request => {
           return (
@@ -69,7 +68,6 @@ export const Activites: React.FC = () => {
               <span className="text-base text-white">
                 {request.title} แลกกับ {request.exchange}
               </span>
-              {JSON.stringify(request)}
             </div>
           );
         })}
