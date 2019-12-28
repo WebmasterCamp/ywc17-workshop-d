@@ -3,6 +3,18 @@ import { Carousel } from './components/Carousel';
 import Swipeable from './components/Swipeable';
 import family from '../../assets/svgs/Group-1022.svg';
 import { useHistory } from 'react-router';
+import assis from '../../assets/svgs/assistance.png';
+import bu from '../../assets/svgs/bueaty.png';
+import con from '../../assets/svgs/consult.png';
+import tent from '../../assets/svgs/content.png';
+import deg from '../../assets/svgs/design.png';
+import ent from '../../assets/svgs/entertain.png';
+import food from '../../assets/svgs/food.png';
+import lang from '../../assets/svgs/language.png';
+import sport from '../../assets/svgs/sport.png';
+import tarot from '../../assets/svgs/tarot.png';
+import tutor from '../../assets/svgs/tutor.png';
+import uinx from '../../assets/svgs/uiux.png';
 
 const Title = ({ title }: any) => <h1 className="p-4 text-xl">{title}</h1>;
 const Form = () => (
@@ -37,21 +49,16 @@ const Form = () => (
   </form>
 );
 
-const Catalog = () => (
-  <div className="w-full h-full">
+const Catagory = ({ title, img }: any) => (
+  <div className="w-1/6">
     <div
-      className="bg-gray-200 shadow-md m-1"
+      className="w-12 h-12 bg-transparent rounded"
       style={{
-        height: '7rem',
-        width: 'auto',
+        backgroundImage: `url("${img}")`,
+        backgroundSize: 'cover',
+        overflow: 'hidden',
       }}
     ></div>
-    <p className="text-center text-base mt-2">สถิติ</p>
-  </div>
-);
-const Catagory = ({ title }: any) => (
-  <div className="w-1/6">
-    <div className="w-12 h-12 bg-gray-200 rounded"></div>
     <p
       className="mt-1 w-10/12 text-center"
       style={{
@@ -235,23 +242,23 @@ export const Home: React.FC = () => {
       >
         <div className="flex flex-col justify-around items-center ml-2 mt-64">
           <div className="flex justify-around w-full">
-            <Catagory title="กราฟฟิค" />
-            <Catagory title="ภาษา" />
-            <Catagory title="สื่อ" />
-            <Catagory title="ความงาม" />
-            <Catagory title="ทำเว็บไซต์" />
+            <Catagory title="กราฟฟิค" img={deg} />
+            <Catagory title="ภาษา" img={lang} />
+            <Catagory title="สื่อ" img={tent} />
+            <Catagory title="ความงาม" img={bu} />
+            <Catagory title="ทำเว็บไซต์" img={uinx} />
           </div>
           <div className="flex justify-around w-full mt-5">
-            <Catagory title="ติวเตอร์" />
-            <Catagory title="ให้คำปรึกษา" />
-            <Catagory title="Project assistent" />
-            <Catagory title="กีฬา" />
-            <Catagory title="อื่น" />
+            <Catagory title="ติวเตอร์" img={tutor} />
+            <Catagory title="ให้คำปรึกษา" img={con} />
+            <Catagory title="Project assistent" img={assis} />
+            <Catagory title="กีฬา" img={sport} />
+            <Catagory title="อาหาร" img={food} />
           </div>
         </div>
       </section>
       <section>
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           <span className="mr-auto">
             <Title title="ใกล้ฉัน" />{' '}
           </span>
