@@ -15,7 +15,7 @@ export const Carousel: React.FC = () => {
     className: 'p-2',
   };
   return (
-    <div className="p-8 mb-2">
+    <div className="mb-2">
       <Slider {...settings}>
         <div className="h-64 bg-red-500 shadow-md rounded-md">
           <h3>1</h3>
