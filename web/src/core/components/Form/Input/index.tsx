@@ -9,18 +9,20 @@ export const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="mb-2">
-      <label htmlFor={name} className="font-bold block">
+      <label htmlFor={name} className="text-base font-bold block">
         {label}
       </label>
       <input
         name={name}
         id={name}
         type="text"
-        className="border border-r-md"
+        className="border border-r-md text-base"
         onChange={onChange}
         value={value}
       />
-      {error && <span className="font-bold text-red-400 block">{error}</span>}
+      {error && (
+        <span className="text-base font-bold text-red-400 block">{error}</span>
+      )}
     </div>
   );
 };

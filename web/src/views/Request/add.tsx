@@ -17,7 +17,7 @@ export const AddRequest: React.FC = () => {
       title: '',
       exchange: '',
       requiredSkill: '',
-      urgency: '',
+      urgency: 'ด่วนมาก',
       location: '',
       details: '',
       phoneno: '',
@@ -66,13 +66,29 @@ export const AddRequest: React.FC = () => {
         value={form.values.requiredSkill}
         error={form.errors && form.errors.requiredSkill}
       />
-      <FormInput
-        name="urgency"
-        label="ความเร่งด่วน"
-        onChange={form.handleChange}
-        value={form.values.urgency}
-        error={form.errors && form.errors.urgency}
-      />
+      <div className="mb-2">
+        <label htmlFor="urgency" className="font-bold block text-base">
+          ความเร่งด่วน
+        </label>
+        <select
+          name="urgency"
+          id="urgency"
+          className="border border-r-md text-base"
+          onChange={form.handleChange}
+          value={form.values.urgency}
+        >
+          <option value="ด่วนมาก">ด่วนมาก</option>
+          <option value="รีบ">รีบ</option>
+          <option value="เฉยๆ">เฉยๆ</option>
+          <option value="ไม่รีบ">ไม่รีบ</option>
+          <option value="ชิว">ชิว</option>
+        </select>
+        {form.errors && form.errors.urgency && (
+          <span className="font-bold text-red-400 block text-base">
+            {form.errors.urgency}
+          </span>
+        )}
+      </div>
       <FormInput
         name="location"
         label="สถานที่"
@@ -81,18 +97,18 @@ export const AddRequest: React.FC = () => {
         error={form.errors && form.errors.location}
       />
       <div className="mb-2">
-        <label htmlFor="details" className="font-bold block">
+        <label htmlFor="details" className="font-bold block text-base">
           รายละเอียด
         </label>
         <textarea
           name="details"
           id="details"
-          className="border border-r-md"
+          className="border border-r-md text-base"
           onChange={form.handleChange}
           value={form.values.details}
         ></textarea>
         {form.errors && form.errors.details && (
-          <span className="font-bold text-red-400 block">
+          <span className="font-bold text-red-400 block text-base">
             {form.errors.details}
           </span>
         )}
@@ -127,18 +143,20 @@ export const AddRequest: React.FC = () => {
         error={form.errors && form.errors.line}
       />
       <div className="mb-2">
-        <label htmlFor="note" className="font-bold block">
+        <label htmlFor="note" className="font-bold block text-base">
           Note
         </label>
         <textarea
           name="note"
           id="note"
-          className="border border-r-md"
+          className="border border-r-md text-base"
           onChange={form.handleChange}
           value={form.values.note}
         ></textarea>
         {form.errors && form.errors.note && (
-          <span className="font-bold text-red-400 block">form.errors.note</span>
+          <span className="font-bold text-red-400 block text-base">
+            form.errors.note
+          </span>
         )}
       </div>
       <br />

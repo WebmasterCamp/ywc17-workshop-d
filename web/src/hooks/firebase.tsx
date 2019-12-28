@@ -70,7 +70,7 @@ export const useFirestoreDoc = function<T = any>(
       });
       return unsubscribe;
     }
-  }, [ref]);
+  }, []);
 
   return data;
 };
@@ -100,7 +100,7 @@ export const useFirestoreCollection = function<T = any>(
 
       return unsubscribe;
     }
-  }, [ref]);
+  }, []);
 
   return data;
 };
