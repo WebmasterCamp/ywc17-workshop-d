@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel } from './components/Carousel';
 import { Hero } from './components/Hero';
+import CardTile from '../../core/components/CardTile';
 
 export const Home: React.FC = () => {
   return (
