@@ -2,6 +2,7 @@ import React from 'react';
 import { Carousel } from './components/Carousel';
 import Swipeable from './components/Swipeable';
 import family from '../../assets/svgs/Group-1022.svg';
+import { useHistory } from 'react-router';
 
 const Title = ({ title }: any) => <h1 className="p-4 text-xl">{title}</h1>;
 const Form = () => (
@@ -74,6 +75,7 @@ const ButtonSeeAll = () => (
 );
 
 export const Home: React.FC = () => {
+  const history = useHistory();
   return (
     <>
       <section
@@ -210,6 +212,9 @@ export const Home: React.FC = () => {
             ค้นหา
           </button>
           <button
+            onClick={() => {
+              history.push('/request/add');
+            }}
             className="bg-orange-theme shadow-md mt-3"
             style={{
               padding: '.5rem 2rem',

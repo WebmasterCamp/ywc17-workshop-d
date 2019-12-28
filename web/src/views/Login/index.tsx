@@ -13,7 +13,9 @@ export const Login: React.FC = () => {
         new auth.GoogleAuthProvider()
       );
       //TODO : fix routing
-      history.push('/register');
+      // history.push('/register');
+
+      window.location.href = '/register';
     } catch (error) {
       alert('login failed');
     }
@@ -21,8 +23,7 @@ export const Login: React.FC = () => {
   // const [,] = useAuth();
 
   return (
-    <div className="">
-      Login!
+    <div className="flex items-center justify-center mt-64">
       <Button onClick={() => login()}>Login With Google</Button>
     </div>
   );

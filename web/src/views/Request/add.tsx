@@ -26,7 +26,7 @@ export const AddRequest: React.FC = () => {
       line: '',
       note: '',
     },
-    onSubmit: data => request(data),
+    onSubmit: (data: any) => request(data),
   });
   const history = useHistory();
   const request = async (data: RequestModel) => {
@@ -42,7 +42,7 @@ export const AddRequest: React.FC = () => {
   };
 
   return (
-    <div className="Form">
+    <div className="Form p-2">
       <h1>ลงทะเบียน</h1>
       <FormInput
         name="title"

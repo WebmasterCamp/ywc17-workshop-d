@@ -1,5 +1,10 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  useHistory,
+} from 'react-router-dom';
 import { Home } from './views/Home';
 import { Register } from './views/Register';
 import { Login } from './views/Login';
@@ -9,12 +14,17 @@ import me from './assets/svgs/user-silhouette.svg';
 import { AddRequest } from './views/Request/add';
 import { ViewRequest } from './views/Request/view';
 import { Activites } from './views/Activites';
+import { useLocalStorage } from './hooks/localstorage';
 
 const App: React.FC = () => {
+  const [data, setData] = useLocalStorage('user');
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex p-1 bg-orange-theme justify-around items-center">
         <img
+          onClick={() => {
+            window.location.href = '/';
+          }}
           className="h-10 w-10 self-start bg-transparent"
           src="https://brandmark.io/logo-rank/random/pepsi.png"
           alt=""
@@ -44,8 +54,24 @@ const App: React.FC = () => {
           </span>
         </p>
         {/* <p className="ml-2 text-base text-white mr-3">hello toey,</p> */}
-        <img className="h-5 w-5 mr-3" src={bell} alt="" />
-        <img className="h-5 w-5" src={me} alt="" />
+        {window.location.pathname == '/login' ? null : data == null ? (
+          <span
+            onClick={() => {
+              window.location.href = '/login';
+            }}
+            style={{
+              fontSize: '16px',
+              color: 'white',
+            }}
+          >
+            LOGIN
+          </span>
+        ) : (
+          <React.Fragment>
+            <img className="h-5 w-5 mr-3" src={bell} alt="" />
+            <img className="h-5 w-5" src={me} alt="" />
+          </React.Fragment>
+        )}
       </header>
       <main className="flex-grow">
         <Router>
@@ -53,11 +79,11 @@ const App: React.FC = () => {
             <Route path="/activites">
               <Activites />
             </Route>
-            <Route path="/request/:id">
-              <ViewRequest />
-            </Route>
             <Route path="/request/add">
               <AddRequest />
+            </Route>
+            <Route path="/request/:id">
+              <ViewRequest />
             </Route>
             <Route path="/register">
               <Register />
