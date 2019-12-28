@@ -10,7 +10,7 @@ import { Register } from './views/Register';
 import { Login } from './views/Login';
 import { Review } from './views/Review';
 import bell from './assets/svgs/bell.svg';
-import me from './assets/svgs/user-silhouette.svg';
+import me from './assets/svgs/logome.svg';
 import { AddRequest } from './views/Request/add';
 import { ViewRequest } from './views/Request/view';
 import { Activites } from './views/Activites';
@@ -29,34 +29,13 @@ const App: React.FC = () => {
             onClick={() => {
               window.location.href = '/';
             }}
-            className="h-10 w-10 self-start bg-transparent"
-            src="https://brandmark.io/logo-rank/random/pepsi.png"
-            alt=""
-          />
-          <p
-            className="ml-2 text-base text-white"
+            className="h-4 w-h-4 self-start bg-transparent m-1"
+            src={me}
             style={{
               marginRight: 'auto',
             }}
-          >
-            <span
-              style={{
-                textTransform: 'uppercase',
-                fontSize: '.95rem',
-                fontWeight: 'bold',
-              }}
-            >
-              skill
-            </span>
-            <span
-              style={{
-                fontSize: '.95rem',
-                textTransform: 'uppercase',
-              }}
-            >
-              ' swap
-            </span>
-          </p>
+            alt=""
+          />
           {/* <p className="ml-2 text-base text-white mr-3">hello toey,</p> */}
           {window.location.pathname == '/login' ? null : data == null ? (
             <span
@@ -120,7 +99,12 @@ const App: React.FC = () => {
         </main>
         <footer className="py-3 bg-orange-theme mt-16">
           <div className="flex flex-col items-center">
-            <div className="border border-gray-500 w-16 h-16"></div>
+            <div
+              className=""
+              style={{
+                backgroundImage: `url(${me})`,
+              }}
+            ></div>
             <p
               style={{
                 fontSize: '1.5rem',

@@ -84,13 +84,12 @@ const ButtonSeeAll = () => (
 
 export const Home: React.FC = () => {
   const history = useHistory();
-  const [loading, setLoad] = React.useState(true);
+  const [loading, setLoad] = React.useState(false);
 
   React.useEffect(() => {
     setTimeout(() => {
-      console.log('object');
       setLoad(false);
-    }, 1200);
+    }, 400);
   }, []);
 
   return (

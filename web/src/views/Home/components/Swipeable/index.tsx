@@ -7,6 +7,7 @@ import '../Carousel/style.css';
 import { useAuth, useFirestoreQuery } from '../../../../hooks/firebase';
 import { firestore } from 'firebase';
 import { RequestModel, OfferModel } from '../../../Request/model';
+import { useHistory } from 'react-router';
 
 const getOrder = ({ index, pos, numItems }: any) => {
   return index - pos < 0 ? numItems - Math.abs(index - pos) : index - pos;
@@ -19,7 +20,7 @@ const Swipeable = (props: any) => {
   const requests = useFirestoreQuery<RequestModel>(
     user ? firestore().collection('requests') : undefined
   );
-
+  const history = useHistory();
   React.useEffect(() => console.log(requests), [requests]);
 
   const settings = {
@@ -35,27 +36,29 @@ const Swipeable = (props: any) => {
   return (
     <Slider {...settings}>
       {requests.map(request => (
-        <CardTile
-          exc={request.exchange}
-          urg={request.urgency}
-          lo={request.location}
-          title={request.title}
-          img="https://images.unsplash.com/photo-1561113500-8f4ad4f80a93?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-          details={[
-            {
-              title: 'ทักษะ',
-              detail: 'อังกฤษ',
-            },
-            {
-              title: 'ค่าตอบแทน',
-              detail: '100',
-            },
-            {
-              title: 'สถานที่',
-              detail: 'bkkF',
-            },
-          ]}
-        />
+        <div onClick={() => history.push('/request/' + request.id)}>
+          <CardTile
+            exc={request.exchange}
+            urg={request.urgency}
+            lo={request.location}
+            title={request.title}
+            img="https://images.unsplash.com/photo-1561113500-8f4ad4f80a93?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            details={[
+              {
+                title: 'ทักษะ',
+                detail: 'อังกฤษ',
+              },
+              {
+                title: 'ค่าตอบแทน',
+                detail: '100',
+              },
+              {
+                title: 'สถานที่',
+                detail: 'bkkF',
+              },
+            ]}
+          />
+        </div>
       ))}
     </Slider>
   );
