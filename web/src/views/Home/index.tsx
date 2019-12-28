@@ -15,6 +15,7 @@ import sport from '../../assets/svgs/sport.png';
 import tarot from '../../assets/svgs/tarot.png';
 import tutor from '../../assets/svgs/tutor.png';
 import uinx from '../../assets/svgs/uiux.png';
+import '../../App.css';
 
 const Title = ({ title }: any) => <h1 className="p-4 text-xl">{title}</h1>;
 const Form = () => (
@@ -83,6 +84,14 @@ const ButtonSeeAll = () => (
 
 export const Home: React.FC = () => {
   const history = useHistory();
+  const [loading, setLoad] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoad(false);
+    }, 400);
+  }, []);
+
   return (
     <>
       <section
@@ -266,7 +275,7 @@ export const Home: React.FC = () => {
             <ButtonSeeAll />
           </span>
         </div>
-        <Swipeable></Swipeable>
+        {loading ? <div className="loader"></div> : <Swipeable></Swipeable>}
       </section>
       <section>
         <div className="flex items-center">
@@ -277,7 +286,7 @@ export const Home: React.FC = () => {
             <ButtonSeeAll />
           </span>
         </div>
-        <Swipeable></Swipeable>
+        {loading ? <div className="loader"></div> : <Swipeable></Swipeable>}
       </section>
     </>
   );
