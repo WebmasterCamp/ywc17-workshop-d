@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Home } from './views/Home';
 import { Register } from './views/Register';
 import { Login } from './views/Login';
+import { AddRequest } from './views/Request/add';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,9 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Router>
           <Switch>
+            <Route path="/request/add">
+              <AddRequest />
+            </Route>
             <Route path="/register">
               <Register />
             </Route>
