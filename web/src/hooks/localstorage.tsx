@@ -22,6 +22,7 @@ export const useLocalStorage = function<T>(
       localStorage.removeItem(key);
     }
   }, [key, data]);
+  console.log('object');
 
   return [data, setData];
 };
