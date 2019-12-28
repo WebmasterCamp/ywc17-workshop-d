@@ -3,5 +3,5 @@ export interface RegisterModel {
   fname: string;
   lname: string;
   email: string;
-  skill: string[];
+  skill: string;
 }

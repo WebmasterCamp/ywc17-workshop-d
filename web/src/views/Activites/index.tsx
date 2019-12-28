@@ -22,7 +22,7 @@ export const Activites: React.FC = () => {
     user
       ? firestore()
           .collection('offers')
-          .where('request', '==', user.uid)
+          .where('requestData.user', '==', user.uid)
       : undefined
   );
 
@@ -36,33 +36,40 @@ export const Activites: React.FC = () => {
 
   const history = useHistory();
 
+  useEffect(() => console.log(requests), [requests]);
+
   return (
     <div className="Form">
       <h1 className="text-lg">Request ของฉัน</h1>
-      {/* {offers.map(offer => {
-        return (
-          <div key="id">
-            <div>
-              <span>
-                {request.title} แลก {request.exchange}
+      <div className="p-2">
+        {offers.map(offer => {
+          return (
+            <div
+              onClick={() => history.push('/offer/' + offer.id)}
+              key={offer.requestData?.title}
+              className="p-2 bg-orange-400 mb-2 w-full"
+            >
+              <span className="text-base text-white">
+                {offer.userData && offer.userData.username} ต้องการช่วยเหลือคุณ
               </span>
             </div>
-            <div>{request.user} ส่ง Offer มา</div>
-          </div>
-        );
-      })} */}
+          );
+        })}
+      </div>
       <h1 className="text-lg">Offer ของ Request ฉัน</h1>
+
       <div className="p-2">
         {requests.map(request => {
           return (
             <div
-              onClick={() => history.push('/request')}
+              onClick={() => history.push('/request/' + request.id)}
               key={request.title}
               className="p-2 bg-orange-400 mb-2 w-full"
             >
               <span className="text-base text-white">
-                {request.title} แลก {request.exchange}
+                {request.title} แลกกับ {request.exchange}
               </span>
+              {JSON.stringify(request)}
             </div>
           );
         })}

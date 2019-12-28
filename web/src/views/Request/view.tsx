@@ -59,8 +59,10 @@ export const ViewRequest: React.FC<{}> = () => {
           ...data,
           request: id,
           user: currentUser.uid,
+          userData,
+          requestData: request,
         });
-        history.push('/');
+        history.push('/activities');
       } catch (e) {
         alert('something went wrong');
       }

@@ -1,3 +1,5 @@
+import { User } from '../../core/models/user';
+
 export interface RequestModel {
   title: string;
   exchange: string;
@@ -12,6 +14,7 @@ export interface RequestModel {
   line?: string;
   note?: string;
   user?: string;
+  userData?: User;
 }
 
 export interface OfferModel {
@@ -19,4 +22,8 @@ export interface OfferModel {
   phoneno: string;
   line?: string;
   email?: string;
+  user?: string;
+  userData?: User;
+  request?: string;
+  requestData?: RequestModel;
 }

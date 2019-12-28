@@ -14,5 +14,5 @@ export const registerSchema = Yup.object().shape<RegisterModel>({
   email: Yup.string()
     .email('Invalid email')
     .required('โปรดใส่อีเมลล์'),
-  skill: Yup.array(Yup.string()),
+  skill: Yup.string(),
 });
