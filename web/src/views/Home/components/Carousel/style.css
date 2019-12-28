@@ -1,0 +1,7 @@
+.slick-track,
+.slick-list {
+  -webkit-perspective: 2000;
+  perspective: 2000;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
