@@ -4,5 +4,9 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if true;
     }
+
+    match /offers/{document=**} {
+      allow delete: if true;
+    }
   }
 }

@@ -16,9 +16,8 @@ const getOrder = ({ index, pos, numItems }: any) => {
 const initialState = { pos: 0, sliding: false, dir: 'NEXT' };
 
 const Swipeable = (props: any) => {
-  const [user, userData] = useAuth();
   const requests = useFirestoreQuery<RequestModel>(
-    user ? firestore().collection('requests') : undefined
+    firestore().collection('requests')
   );
   const history = useHistory();
   React.useEffect(() => console.log(requests), [requests]);

@@ -33,7 +33,7 @@ const CardTile: React.FC<{
             ติวภาษา
           </h2>
           <div className="text-gray-900 font-bold text-xl mb-2 text-orange-theme">
-            {true
+            {!title
               ? 'ครูสอนพิเศษภาษาสเปนไว้ใช้คุยกับแฟน 2 วัน (เสาร์-อาทิตย์)'
               : title}
           </div>
