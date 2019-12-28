@@ -20,6 +20,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
+    "react-swipeable": "^5.5.0",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^1.1.4",
     "typescript": "~3.7.2"
