@@ -47,6 +47,7 @@ module.exports = {
         700: '#c05621',
         800: '#9c4221',
         900: '#7b341e',
+        theme: '#FF896B',
       },
       yellow: {
         100: '#fffff0',
@@ -113,6 +114,7 @@ module.exports = {
         700: '#6b46c1',
         800: '#553c9a',
         900: '#44337a',
+        theme: '#AC81FB',
       },
       pink: {
         100: '#fff5f7',
@@ -486,4 +488,4 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [],
-}
+};
