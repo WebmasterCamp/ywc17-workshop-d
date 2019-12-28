@@ -40,6 +40,7 @@ const CardTile: React.FC<{
               style={{
                 backgroundImage: `url(${tradeSvg})`,
                 backgroundSize: 'cover',
+                transform: 'rotate(-90deg)',
               }}
             ></div>
             <p className="text-xs">แลกกับ</p>

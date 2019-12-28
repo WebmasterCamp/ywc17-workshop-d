@@ -4,7 +4,8 @@ import { Home } from './views/Home';
 import { Register } from './views/Register';
 import { Login } from './views/Login';
 import { Review } from './views/Review';
-
+import bell from './assets/svgs/bell.svg';
+import me from './assets/svgs/user-silhouette.svg';
 const App: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col">
@@ -20,19 +21,27 @@ const App: React.FC = () => {
             marginRight: 'auto',
           }}
         >
-          website name
+          <span
+            style={{
+              textTransform: 'uppercase',
+              fontSize: '.95rem',
+              fontWeight: 'bold',
+            }}
+          >
+            skill
+          </span>
+          <span
+            style={{
+              fontSize: '.95rem',
+              textTransform: 'uppercase',
+            }}
+          >
+            ' swap
+          </span>
         </p>
-        <p className="ml-2 text-base text-white mr-3">hello toey,</p>
-        <img
-          className="h-5 w-5 mr-3"
-          src="https://brandmark.io/logo-rank/random/pepsi.png"
-          alt=""
-        />
-        <img
-          className="h-5 w-5"
-          src="https://brandmark.io/logo-rank/random/pepsi.png"
-          alt=""
-        />
+        {/* <p className="ml-2 text-base text-white mr-3">hello toey,</p> */}
+        <img className="h-5 w-5 mr-3" src={bell} alt="" />
+        <img className="h-5 w-5" src={me} alt="" />
       </header>
       <main className="flex-grow">
         <Router>
@@ -61,14 +70,14 @@ const App: React.FC = () => {
               color: 'white',
             }}
           >
-            website
+            SKILL' SWAP
           </p>
           <p
             style={{
               color: 'white',
             }}
           >
-            Copyright &copy; website.com{' '}
+            Copyright &copy; skillsswap.com{' '}
             <span className="block text-center">All right reserved</span>
           </p>
         </div>
