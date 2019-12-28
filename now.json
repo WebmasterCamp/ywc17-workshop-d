@@ -1,6 +1,0 @@
-{
-  "name": "ywc17-workshop-d",
-  "alias": ["workshop-d.ywc17.ywc.in.th"],
-  "regions": ["all"],
-  "builds": [{ "src": "web/public/**", "use": "@now/static" }]
-}
