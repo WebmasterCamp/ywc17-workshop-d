@@ -39,7 +39,7 @@ export const Activites: React.FC = () => {
   useEffect(() => console.log(requests), [requests]);
 
   return (
-    <div className="Form">
+    <div className="Form p-5">
       <h1 className="text-lg">Offer ของ Request ฉัน</h1>
       <div className="p-2">
         {offers.map(offer => {

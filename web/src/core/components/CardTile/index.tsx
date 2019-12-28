@@ -21,7 +21,10 @@ const CardTile: React.FC<{
   details: IDetail[];
   title: string;
   img: string;
-}> = ({ details, img, title }) => {
+  exc: string;
+  lo: string;
+  urg: string;
+}> = ({ details, img, title, exc, lo, urg }) => {
   return (
     <div className="max-w-sm w-auto lg:max-w-1/3 lg:flex rounded-full py-2 px-4">
       <div className="้bg-white p-3 flex flex-col justify-between leading-normal mb-2 bg-gray-100 shadow-md">
@@ -45,15 +48,10 @@ const CardTile: React.FC<{
             ></div>
             <p className="text-xs">แลกกับ</p>
           </div>
-          <p className="text-gray-800 text-sm font-semibold py-1">
-            เลี้ยงอาหารกลางวัน (บุฟเฟ่ต์)
-          </p>
+          <p className="text-gray-800 text-sm font-semibold py-1">{exc}</p>
           <div className="flex flex-col">
-            <FeatureRow title="ด่วนมาก" logo="" />
-            <FeatureRow
-              title="คณะเทคโนโลยีสารสนเทศ, พระจอมเกล้าลาดกระบัง"
-              logo=""
-            />
+            <FeatureRow title={urg} logo="" />
+            <FeatureRow title={lo} logo="" />
           </div>
         </div>
       </div>

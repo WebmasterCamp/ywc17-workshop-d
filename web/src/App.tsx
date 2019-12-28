@@ -17,6 +17,7 @@ import { Activites } from './views/Activites';
 import { useLocalStorage } from './hooks/localstorage';
 import { ViewOffer } from './views/Offer/view';
 import { auth } from 'firebase';
+import './App.css';
 
 const App: React.FC = () => {
   const [data, setData] = useLocalStorage('user');
@@ -77,14 +78,15 @@ const App: React.FC = () => {
                 onClick={() => (window.location.href = '/activities')}
                 alt=""
               />
-              <img
-                className="h-5 w-5"
-                src={me}
-                alt=""
+              <p
+                // src={me}
+                className="text-white"
                 onClick={() => {
                   auth().signOut();
                 }}
-              />
+              >
+                LOGOUT
+              </p>
             </React.Fragment>
           )}
         </header>

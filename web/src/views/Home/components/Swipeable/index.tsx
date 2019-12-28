@@ -4,6 +4,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../Carousel/style.css';
+import { useAuth, useFirestoreQuery } from '../../../../hooks/firebase';
+import { firestore } from 'firebase';
+import { RequestModel, OfferModel } from '../../../Request/model';
 
 const getOrder = ({ index, pos, numItems }: any) => {
   return index - pos < 0 ? numItems - Math.abs(index - pos) : index - pos;
@@ -12,6 +15,13 @@ const getOrder = ({ index, pos, numItems }: any) => {
 const initialState = { pos: 0, sliding: false, dir: 'NEXT' };
 
 const Swipeable = (props: any) => {
+  const [user, userData] = useAuth();
+  const requests = useFirestoreQuery<RequestModel>(
+    user ? firestore().collection('requests') : undefined
+  );
+
+  React.useEffect(() => console.log(requests), [requests]);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -21,11 +31,15 @@ const Swipeable = (props: any) => {
     arrows: true,
     className: 'p-2',
   };
+
   return (
     <Slider {...settings}>
-      {['', '', '', ''].map(_ => (
+      {requests.map(request => (
         <CardTile
-          title="มีใครว่างบ้างงง"
+          exc={request.exchange}
+          urg={request.urgency}
+          lo={request.location}
+          title={request.title}
           img="https://images.unsplash.com/photo-1561113500-8f4ad4f80a93?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
           details={[
             {
