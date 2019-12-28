@@ -11,4 +11,12 @@ export interface RequestModel {
   facebook?: string;
   line?: string;
   note?: string;
+  user?: string;
+}
+
+export interface OfferModel {
+  note: string;
+  phoneno: string;
+  line?: string;
+  email?: string;
 }

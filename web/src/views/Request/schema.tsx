@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { RequestModel } from './model';
+import { RequestModel, OfferModel } from './model';
 
 export const requestSchema = Yup.object().shape<RequestModel>({
   title: Yup.string().required('โปรดใส่หัวข้อ'),
@@ -12,4 +12,11 @@ export const requestSchema = Yup.object().shape<RequestModel>({
   email: Yup.string(),
   facebook: Yup.string(),
   line: Yup.string(),
+});
+
+export const offerSchema = Yup.object().shape<OfferModel>({
+  phoneno: Yup.string().required('โปรดใส่เบอร์โทร'),
+  email: Yup.string(),
+  line: Yup.string(),
+  note: Yup.string(),
 });

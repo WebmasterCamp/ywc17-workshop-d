@@ -5,6 +5,7 @@ import { Register } from './views/Register';
 import { Login } from './views/Login';
 import { Review } from './views/Review';
 import { AddRequest } from './views/Request/add';
+import { ViewRequest } from './views/Request/view';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,9 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Router>
           <Switch>
+            <Route path="/request/:id">
+              <ViewRequest />
+            </Route>
             <Route path="/request/add">
               <AddRequest />
             </Route>

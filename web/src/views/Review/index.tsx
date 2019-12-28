@@ -1,7 +1,7 @@
 import React from 'react';
 import trading from '../../assets/svgs/transfer.svg';
 
-const Star = () => (
+export const Star = () => (
   <div
     className="w-5 h-5"
     style={{
