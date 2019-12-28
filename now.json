@@ -1,0 +1,23 @@
+{
+  "name": "ywc17-workshop-d",
+  "alias": ["workshop-d.ywc17.ywc.in.th"],
+  "regions": ["all"],
+  "version": 2,
+  "public": false,
+  "builds": [
+    {
+      "src": "./web/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "web/$1",
+      "continue": true
+    },
+    { "handle": "filesystem" },
+    { "src": ".*", "dest": "web/index.html" }
+  ]
+}
