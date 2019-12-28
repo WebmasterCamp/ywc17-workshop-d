@@ -6,6 +6,7 @@ import { Login } from './views/Login';
 import { Review } from './views/Review';
 import { AddRequest } from './views/Request/add';
 import { ViewRequest } from './views/Request/view';
+import { Activites } from './views/Activites';
 
 const App: React.FC = () => {
   return (
@@ -39,6 +40,9 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Router>
           <Switch>
+            <Route path="/activites">
+              <Activites />
+            </Route>
             <Route path="/request/:id">
               <ViewRequest />
             </Route>

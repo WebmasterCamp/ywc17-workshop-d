@@ -14,9 +14,11 @@ import { FormInput } from '../../core/components/Form/Input';
 export const ViewRequest: React.FC<{}> = () => {
   const { id } = useParams();
   const request = useFirestoreDoc<RequestModel>(
-    firestore()
-      .collection('requests')
-      .doc(id)
+    id
+      ? firestore()
+          .collection('requests')
+          .doc(id)
+      : undefined
   );
   const [userData, setUserData] = useState<User>();
   const [currentUser] = useAuth();

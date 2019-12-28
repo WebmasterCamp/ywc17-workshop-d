@@ -47,8 +47,8 @@ export const useAuth = (): [
 
 export const useFirestoreDoc = function<T = any>(
   ref?: firestore.DocumentReference
-): T | null | undefined {
-  const [data, setData] = useState<T | null>();
+): WithId<T> | null | undefined {
+  const [data, setData] = useState<WithId<T> | null>();
 
   useEffect(() => {
     if (ref) {
@@ -62,7 +62,7 @@ export const useFirestoreDoc = function<T = any>(
                   ? (newData[key] as firestore.Timestamp).toDate()
                   : newData[key];
             }
-            setData(newData as T);
+            setData({ ...newData, id: snapshot.id } as WithId<T>);
           } else {
             setData(null);
           }
@@ -77,8 +77,8 @@ export const useFirestoreDoc = function<T = any>(
 
 export const useFirestoreCollection = function<T = any>(
   ref?: firestore.CollectionReference
-): T[] {
-  const [data, setData] = useState<T[]>([]);
+): WithId<T>[] {
+  const [data, setData] = useState<WithId<T>[]>([]);
 
   useEffect(() => {
     if (ref) {
@@ -92,7 +92,7 @@ export const useFirestoreCollection = function<T = any>(
                   ? (newData[key] as firestore.Timestamp).toDate()
                   : newData[key];
             }
-            return newData as T;
+            return { ...newData, id: doc.id } as WithId<T>;
           });
           setData(newDatas);
         },
@@ -104,3 +104,35 @@ export const useFirestoreCollection = function<T = any>(
 
   return data;
 };
+
+export const useFirestoreQuery = function<T = any>(
+  ref?: firestore.Query
+): WithId<T>[] {
+  const [data, setData] = useState<WithId<T>[]>([]);
+
+  useEffect(() => {
+    if (ref) {
+      const unsubscribe = ref.onSnapshot({
+        next: snapshot => {
+          const newDatas = snapshot.docs.map(doc => {
+            const newData = doc.data();
+            for (const key in newData) {
+              newData[key] =
+                newData[key] instanceof firestore.Timestamp
+                  ? (newData[key] as firestore.Timestamp).toDate()
+                  : newData[key];
+            }
+            return { ...newData, id: doc.id } as WithId<T>;
+          });
+          setData(newDatas);
+        },
+      });
+
+      return unsubscribe;
+    }
+  }, []);
+
+  return data;
+};
+
+export type WithId<T> = T & { id: string };
