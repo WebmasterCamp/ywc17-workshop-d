@@ -8,12 +8,12 @@ import { Star } from '../Review';
 import { OfferModel } from '../Request/model';
 import { Button } from '../../core/components/Button';
 
-export const ViewOffer: React.FC<{}> = () => {
+export const ViewDeal: React.FC<{}> = () => {
   const { id } = useParams();
-  const offer = useFirestoreDoc<OfferModel>(
+  const deal = useFirestoreDoc<any>(
     id
       ? firestore()
-          .collection('offers')
+          .collection('deals')
           .doc(id)
       : undefined
   );
@@ -22,28 +22,9 @@ export const ViewOffer: React.FC<{}> = () => {
   const history = useHistory();
   const [helpModal, setHelpModal] = useState(false);
 
-  const deal = async () => {
-    try {
-      const ref = firestore().collection('offers');
-      const deal = await ref.add({
-        request: id,
-        offer,
-        accepter: offer?.user,
-      });
-      const refs = await ref.where('request.id', '==', id);
-      (await refs.get()).forEach(docs => {
-        docs.ref.delete();
-        console.log(docs);
-      });
-      history.push('/activities');
-    } catch (e) {
-      alert('something went wrong');
-    }
-  };
+  useEffect(() => console.log(deal), [deal]);
 
-  useEffect(() => console.log(offer), [offer]);
-
-  return offer ? (
+  return deal ? (
     <>
       <div className="flex flex-col justify-center">
         <div
@@ -51,11 +32,11 @@ export const ViewOffer: React.FC<{}> = () => {
           style={{}}
         >
           <h1 className="text-lg text-center">
-            {offer.userData?.username} ต้องการช่วยเหลือคุณ
+            {deal.offer.userData?.username} กำลังช่วยเหลือคุณ
           </h1>
           <div className="mt-8 shadow-md py-1 w-10/12 h-40 bg-gray-200 flex flex-col justify-around items-center">
             <p className="text-lg">
-              {offer.requestData && offer.requestData.title}
+              {deal.offer.requestData && deal.offer.requestData.title}
             </p>
             <div
               className="h-12 w-12"
@@ -66,33 +47,49 @@ export const ViewOffer: React.FC<{}> = () => {
               }}
             ></div>
             <p className="text-lg">
-              {offer.requestData && offer.requestData.exchange}
+              {deal.offer.requestData && deal.offer.requestData.exchange}
             </p>
           </div>
         </div>
         <div className="border p-2 rounded-md">
           <ul className="text-base">
-            <li className="text-base">Skill: {offer.userData?.skill}</li>
-            <li className="text-base">โน้ต: {offer.note}</li>
+            <li className="text-base">
+              Skill: {deal.offer.requestData.requiredSkill}
+            </li>
+            <li className="text-base">
+              ความเร่งด่วน: {deal.offer.requestData.urgency}
+            </li>
+            <li className="text-base">
+              สถานที่: {deal.offer.requestData.location}
+            </li>
           </ul>
         </div>
-        {userData && (
-          <div className="flex justify-between items-middle">
-            <span className="text-base text-center mt-2">
-              คนขอ: {userData.fname} {userData.lname}{' '}
-            </span>
-            <div className="flex self-end justify-around">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-          </div>
-        )}
+        <div className="p-2">
+          <h1 className="text-lg text-center">
+            ข้อมูลการติดต่อคน Request : {deal.offer.userData?.username}
+          </h1>
+          <ul className="text-base">
+            <li className="text-base">เบอร์โทร: {deal.offer.phoneno}</li>
+            <li className="text-base">เมลล์: {deal.offer.email}</li>
+            <li className="text-base">
+              facebook: {deal.offer.requestData?.facebook || '-'}
+            </li>
+            <li className="text-base">
+              line: {deal.offer.requestData?.line || '-'}
+            </li>
+          </ul>
+        </div>
+        <div className="p-2">
+          <h1 className="text-lg text-center">
+            ข้อมูลการติดต่อคน Offer : {deal.offer.username || '-'}
+          </h1>
+          <ul className="text-base">
+            <li className="text-base">เบอร์โทร: {deal.offer.phoneno || '-'}</li>
+            <li className="text-base">เมลล์: {deal.offer.email || '-'}</li>
+          </ul>
+        </div>
         <div className="flex justify-end">
-          <Button onClick={() => history.goBack()}>กลับ</Button>
-          <Button onClick={() => deal()}>รับ Offer</Button>
+          <Button onClick={() => history.push('/review')}>รีวิว</Button>
         </div>
       </div>
     </>

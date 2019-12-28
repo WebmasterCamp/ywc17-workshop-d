@@ -24,18 +24,22 @@ export const ViewOffer: React.FC<{}> = () => {
 
   const deal = async () => {
     try {
-      const ref = firestore().collection('offers');
+      const ref = firestore().collection('deals');
       const deal = await ref.add({
-        request: id,
+        requester: offer?.requestData?.user,
         offer,
         accepter: offer?.user,
       });
-      const refs = await ref.where('request.id', '==', id);
-      (await refs.get()).forEach(docs => {
-        docs.ref.delete();
-        console.log(docs);
-      });
-      history.push('/activities');
+      const refs = await firestore()
+        .collection('offers')
+        .where('request.id', '==', id);
+      await Promise.all(
+        (await refs.get()).docs.map(docs => async () => {
+          console.log(docs);
+          await docs.ref.delete();
+        })
+      );
+      history.push('/deals/' + deal.id);
     } catch (e) {
       alert('something went wrong');
     }

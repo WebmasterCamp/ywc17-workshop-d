@@ -17,6 +17,7 @@ import { Activites } from './views/Activites';
 import { useLocalStorage } from './hooks/localstorage';
 import { ViewOffer } from './views/Offer/view';
 import { auth } from 'firebase';
+import { ViewDeal } from './views/Deal';
 
 const App: React.FC = () => {
   const [data, setData] = useLocalStorage('user');
@@ -90,6 +91,9 @@ const App: React.FC = () => {
         </header>
         <main className="flex-grow">
           <Switch>
+            <Route path="/deals/:id">
+              <ViewDeal />
+            </Route>
             <Route path="/offer/:id">
               <ViewOffer />
             </Route>
@@ -113,6 +117,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/review">
               <Review />
+            </Route>
+            <Route>
+              <Home />
             </Route>
           </Switch>
         </main>

@@ -26,11 +26,11 @@ export const Activites: React.FC = () => {
       : undefined
   );
 
-  const offered = useFirestoreQuery<RequestModel>(
+  const deals = useFirestoreQuery<any>(
     user
       ? firestore()
-          .collection('offers')
-          .where('user', '==', user.uid)
+          .collection('deals')
+          .where('offer.requestData.user', '==', user.uid)
       : undefined
   );
 
@@ -73,6 +73,23 @@ export const Activites: React.FC = () => {
         })}
       </div>
       <h1 className="text-lg">Offer ที่ตกลงกันแล้ว</h1>
+      <div className="p-2">
+        {deals.map(deal => {
+          return (
+            <div
+              onClick={() => history.push('/deals/' + deal.id)}
+              key={deal.title}
+              className="p-2 bg-orange-400 mb-2 w-full"
+            >
+              <span className="text-base text-white">
+                {deal.offer.userData.fname} กำลังช่วยคุณ{' '}
+                {deal.offer.requestData.title} แลกกับ{' '}
+                {deal.offer.requestData.exchange}
+              </span>
+            </div>
+          );
+        })}
+      </div>
       <h1 className="text-lg">Reviews</h1>
     </div>
   );
