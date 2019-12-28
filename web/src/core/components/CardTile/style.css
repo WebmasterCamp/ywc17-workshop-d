@@ -1,0 +1,16 @@
+.card-tile {
+  height: 10.5rem;
+  background-color: red;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.card-tile__avatar {
+  background-size: cover;
+  width: 33.33333;
+  height: 50%;
+}
+
+.card-tile__title {
+}
