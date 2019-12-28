@@ -6,6 +6,10 @@ import { Login } from './views/Login';
 import { Review } from './views/Review';
 import bell from './assets/svgs/bell.svg';
 import me from './assets/svgs/user-silhouette.svg';
+import { AddRequest } from './views/Request/add';
+import { ViewRequest } from './views/Request/view';
+import { Activites } from './views/Activites';
+
 const App: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col">
@@ -46,6 +50,15 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Router>
           <Switch>
+            <Route path="/activites">
+              <Activites />
+            </Route>
+            <Route path="/request/:id">
+              <ViewRequest />
+            </Route>
+            <Route path="/request/add">
+              <AddRequest />
+            </Route>
             <Route path="/register">
               <Register />
             </Route>
